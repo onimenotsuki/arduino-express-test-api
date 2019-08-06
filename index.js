@@ -11,6 +11,30 @@ board.on('ready', () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
 
+  app.get('/power', (req, res) => {
+    switch (req.query.action) {
+    case 'on':
+      led.stop();
+      led.on();
+      res.send('Led encendido');
+      break;
+    case 'off':
+      led.stop();
+      led.off();
+      res.send('Led apagado');
+      break;
+    case 'blink':
+      led.blink(250);
+      res.send('Led parpadeando');
+      break;
+    default:
+      led.stop();
+      led.on();
+      res.send('Led encendido');
+      break;
+    }
+  });
+
   app.get('/powerOn', (req, res) => {
     led.on();
   });
