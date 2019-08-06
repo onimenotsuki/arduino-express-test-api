@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "johnny-five": "^1.2.0",
     "nodemon": "^1.19.1"
   }
 }
