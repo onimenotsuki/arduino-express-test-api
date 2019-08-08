@@ -11,10 +11,7 @@ board.on('ready', () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
 
-  app.get(
-    '/',
-    (req, res) => res.send('Servidor funcionando con éxito')
-  );
+  app.get('/', (req, res) => res.send('Servidor pi funcionando con éxito'));
 
   app.get('/power', (req, res) => {
     switch (req.query.action) {
