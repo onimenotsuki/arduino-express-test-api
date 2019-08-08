@@ -11,53 +11,66 @@ board.on('ready', () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors());
 
-  app.get('/', (req, res) => res.send('Servidor pi funcionando con éxito'));
+  app.get('/', (req, res) => res.send('Servidor pi funcionando con éxito, porque soy la verga'));
 
   app.get('/power', (req, res) => {
     switch (req.query.action) {
     case 'on':
       led.stop();
       led.on();
-      res.send('Led encendido');
+      res.json({
+        message: 'Led encendido',
+        status: 'on',
+      });
       break;
     case 'off':
       led.stop();
       led.off();
-      res.send('Led apagado');
+      res.json({
+        message: 'Led apagado',
+        status: 'off',
+      });
       break;
     case 'blink':
       led.blink(250);
-      res.send('Led parpadeando');
+      res.json({
+        message: 'Led parpadeando',
+        status: 'blink',
+      });
       break;
     default:
       led.stop();
       led.on();
-      res.send('Led encendido');
+      res.json({
+        message: 'Led encendido',
+        status: 'on',
+      });
       break;
     }
-  });
-
-  app.get('/powerOn', (req, res) => {
-    led.on();
-  });
-
-  app.get('/powerOff', (req, res) => {
-    led.off();
   });
 
   app.post('/action', (req, res) => {
     switch (req.body.power) {
     case 'on':
       led.on();
-      res.send('Led encendido');
+      res.json({
+        message: 'Led encendido',
+        status: 'on',
+      });
       break;
     case 'off':
       led.off();
-      res.send('Led apagado');
+      res.json({
+        message: 'Led apagado',
+        status: 'off',
+      });
       break;
     default:
       led.on();
-      res.send('Led encendido');
+      res.json({
+        message: 'Led parpadeando',
+        status: 'blink',
+      });
       break;
     }
   });
